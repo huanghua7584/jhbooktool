@@ -39,6 +39,10 @@ class winMain(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(winMain, self).__init__(parent)
         self.setupUi(self)
+        self.root.clicked.connect(self.dataTree)
+
+    def dataTree(self, index):
+        print(index.row())
 
 
 if __name__ == "__main__":
