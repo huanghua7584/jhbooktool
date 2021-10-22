@@ -20,7 +20,7 @@ class login(QtWidgets.QMainWindow, Ui_Form):
     def onLogin(self):
         username = self.edit_name.text().strip()
         password = self.edit_password.text().strip()
-        file = open("D:/QtFile/data/user.data", "rb")
+        file = open("/Volumes/资料/gitfiles/jhbooktool/data/user.data", "rb")
         df = pickle.load(file)
         nameBool = username in df.name.values
         passBool = password in df.password.values
@@ -29,7 +29,7 @@ class login(QtWidgets.QMainWindow, Ui_Form):
             QMessageBox.warning(self, "登录失败", "用户名或密码错误！")
             return
         SI.mainWin = winMain()
-        SI.mainWin.showMaximized()
+        #SI.mainWin.showMaximized() #窗口最大化
         SI.mainWin.show()
         self.hide()
 
