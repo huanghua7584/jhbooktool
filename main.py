@@ -1,5 +1,6 @@
 import sys
 import pickle
+import re
 import pandas as pd
 import numpy as np
 from login import *
@@ -39,10 +40,27 @@ class winMain(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(winMain, self).__init__(parent)
         self.setupUi(self)
-        self.root.clicked.connect(self.dataTree)
+        self.treeWidget.itemDoubleClicked.connect(self.dataTree)
+
+    def openFile(self):
+        qft = QFileDialog()
+        caption = "打开文件"
+        directory = "C:/Users/Administrator/Desktop"
+        filter = "ALL(*.*);;TEXT(*.txt);;IMG(*.png *.jpg);;EXCEL(*.xls *.xlsx)"
+        initialFilter = "EXCEL(*.xls *.xlsx)"
+        SI.Files = qft.getOpenFileNames(None, caption, directory, filter, initialFilter)
 
     def dataTree(self, index):
-        print(index.row())
+        if index.text(0) == "导入数据":
+            self.openFile()
+            tableTitle = SI.Files[0][1]
+
+        elif index.text(0) == "创建关系":
+            pass
+        elif index.text(0) == "筛选数据":
+            pass
+        else:
+            pass
 
 
 if __name__ == "__main__":
